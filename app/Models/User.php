@@ -23,6 +23,7 @@ class User extends Authenticatable
         'description',
         'role',
         'status',
+        'has_completed_initial_sync',
     ];
 
     protected $hidden = [
@@ -32,6 +33,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'has_completed_initial_sync' => 'boolean',
     ];
 
     public function callLogs()

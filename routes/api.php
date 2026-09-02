@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CallLogController;
+use App\Http\Controllers\Api\CallHistorySyncController;
 
 // પબ્લિક રૂટ (કોઈ પણ એક્સેસ કરી શકે)
 Route::post('/login', [AuthController::class, 'login']);
@@ -18,6 +19,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // કોલ લોગ્સ અપલોડ કરવા
     Route::post('/calls', [CallLogController::class, 'store']);
+    Route::get('/call-history-sync/options', [CallHistorySyncController::class, 'getSyncOptions']);
+    Route::post('/calls/sync-status', [CallHistorySyncController::class, 'syncStatus']);
+    Route::post('/calls/sync-complete', [CallHistorySyncController::class, 'syncComplete']);
 
     // યુઝર મેનેજમેન્ટ (એડમિન માટે)
     Route::get('/users', [UserController::class, 'index']);
